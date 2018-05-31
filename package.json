@@ -1,0 +1,27 @@
+{
+  "name": "simpleApi",
+  "version": "1.0.0",
+  "description": "JH nodejs Simple Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "test",
+    "API",
+    "restful"
+  ],
+  "author": "Joerg",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10"
+  }
+}
