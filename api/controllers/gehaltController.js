@@ -22,3 +22,21 @@ exports.gehaltMonatJahr = function(req, res) {
 	  }
 	});
 };
+
+
+exports.insertGehalt = function (req, res) {
+	var jahr = req.get('Jahr');
+	var monat = req.get('Monat');
+	var brutto = req.get('Brutto');
+	var netto = req.get('Netto');
+	var akp = req.get('AKP');
+	var kantine = req.get('Kantine');
+	const gehaltRow = { Monat: monat, Jahr: jahr, Brutto: brutto, Netto: netto, AKP: akp, Kantine: kantine };
+	console.log(gehaltRow);
+	connection.query('INSERT INTO Gehalt SET ?', gehaltRow, (err, res) => {	
+  	  if(err) throw err;
+	  console.log('Last insert ID:', res.insertId);
+	  res.json(gehaltRow);
+	});
+	
+}

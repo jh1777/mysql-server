@@ -13,6 +13,13 @@ Directory: `home/Development/nodejs/mysql-api`.
 In project directory:
 `npm run start`
 
+## Start as service
+**Start:**: `sudo /etc/init.d/mysql-api start`
+**Stop:**: `sudo /etc/init.d/mysql-api stop`  
+(File used as service in init.d is included in Git Repo root folder)
+
+[Example tutorial used](https://maker-tutorials.com/node-js-init-script-neustart-reboot-automatisch-starten-linux-raspberry-pi/)
+
 ## Usage
 Example to get Monat 1 form Jahr 2018:
 `http://jhnas.local:3000/sql/gehalt?jahr=2018&monat=1`
