@@ -1,11 +1,16 @@
 'use strict';
 module.exports = function(app) {
-  var todoList = require('../controllers/gehaltController');
+  var api = require('../controllers/gehaltController');
 
   app.route('/sql')
-    .get(todoList.sql_test);
+    .get(api.sql_test);
 
   app.route('/sql/gehalt')
-  	.get(todoList.gehaltMonatJahr);
+  	.get(api.gehaltMonatJahr);
 
+  app.route('/sql/gehalt')
+    .post(api.insertGehalt);
+  
+  app.route('/sql/gehalt')
+    .delete(api.deleteGehalt);
 };
