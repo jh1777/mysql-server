@@ -33,6 +33,7 @@ exports.insertGehalt = function (req, res) {
 	var kantine = req.get('Kantine');
 	const gehaltRow = { Monat: monat, Jahr: jahr, Brutto: brutto, Netto: netto, AKP: akp, Kantine: kantine };
 	console.log(gehaltRow);
+<<<<<<< HEAD
 	connection.query('INSERT INTO Gehalt SET ?', gehaltRow, (err, result) => {	
 		if(err) throw err;
 	  console.log('Last insert ID:', result.insertId);
@@ -50,3 +51,12 @@ exports.deleteGehalt = function (req, res) {
 		res.json(gehaltRow);
 	});
 };
+=======
+	connection.query('INSERT INTO Gehalt SET ?', gehaltRow, (err, res) => {	
+  	  if(err) throw err;
+	  console.log('Last insert ID:', res.insertId);
+	  res.json(gehaltRow);
+	});
+	
+}
+>>>>>>> 0613cb74a8209efc386fff8e175ee16e4d56698f
