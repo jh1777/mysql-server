@@ -10,12 +10,7 @@ module.exports = function(app) {
 
   app.route('/sql/gehalt')
     .post(api.insertGehalt);
-<<<<<<< HEAD
   
   app.route('/sql/gehalt')
     .delete(api.deleteGehalt);
 };
-=======
-    
-};
->>>>>>> 0613cb74a8209efc386fff8e175ee16e4d56698f
