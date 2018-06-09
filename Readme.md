@@ -25,8 +25,12 @@ Example to get Monat 1 form Jahr 2018:
 `http://jhnas.local:3000/sql/gehalt?jahr=2018&monat=1`
 
 # Next Todos: 
-## Start automatically on NAS startup
-Maybe create a Docker container out of that app!
+## Pi3
+Run on Pi3 `/home/openhabian/nodejs-mysql-api`. Managed by PM2 (http://pm2.keymetrics.io/)
+Installed via `npm install pm2 -g`.
+Run app using `pm2 start server.js`.
+Autostart app via `pm2 save` and `pm2 startup systemd`. Comment displays correct command to be executed.
+
 
 ## Try with another tutorial and postgres
 [Getting Started with Node, Express and Postgres Using Sequelize](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize)
