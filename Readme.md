@@ -6,12 +6,12 @@ Sources:
 + [Using MySQL with Node.js and the mysql JavaScript Client](https://www.sitepoint.com/using-node-mysql-javascript-client/)
 
 ## Location
-Developed in Synology NAS.
-Directory: `home/Development/nodejs/mysql-api`.
+Developed in Synology NAS Docker image centos1. 
+Directory: `home/app/nodejs-mysql-api`.
 
 ## Start
 In project directory:
-`npm run start`
+`npm run start` or  pm2 start server.js 
 
 ## Start as service
 **Start:**: `sudo /etc/init.d/mysql-api start`
@@ -21,8 +21,8 @@ In project directory:
 [Example tutorial used](https://maker-tutorials.com/node-js-init-script-neustart-reboot-automatisch-starten-linux-raspberry-pi/)
 
 ## Usage
-Example to get Monat 1 form Jahr 2018:
-`http://jhnas.local:3000/sql/gehalt?jahr=2018&monat=1`
+Example to get Monat 1 form Jahr 2018 (on docker centos1):
+`http://jhnas.local:4000/sql/gehalt?jahr=2018&monat=1`
 
 # Next Todos: 
 ## Pi3
