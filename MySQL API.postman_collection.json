@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "f23e5ce2-7586-4abc-950a-1447b153424b",
+		"name": "MySQL API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gehalt 2018 Monat 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"test\": \"1\" }"
+				},
+				"url": {
+					"raw": "http://openhabianpi:4000/sql/gehalt?jahr=2018&monat=2",
+					"protocol": "http",
+					"host": [
+						"openhabianpi"
+					],
+					"port": "4000",
+					"path": [
+						"sql",
+						"gehalt"
+					],
+					"query": [
+						{
+							"key": "jahr",
+							"value": "2018"
+						},
+						{
+							"key": "monat",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Entry",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Monat",
+						"value": "5"
+					},
+					{
+						"key": "Jahr",
+						"value": "2018"
+					},
+					{
+						"key": "Kantine",
+						"value": "123",
+						"disabled": true
+					},
+					{
+						"key": "Netto",
+						"value": "123",
+						"disabled": true
+					},
+					{
+						"key": "Brutto",
+						"value": "123",
+						"disabled": true
+					},
+					{
+						"key": "AKP",
+						"value": "0",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://jhnas.local:3000/sql/gehalt",
+					"protocol": "http",
+					"host": [
+						"jhnas",
+						"local"
+					],
+					"port": "3000",
+					"path": [
+						"sql",
+						"gehalt"
+					]
+				},
+				"description": "by Jahr und Monat"
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Entry",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Monat",
+						"value": "3"
+					},
+					{
+						"key": "Jahr",
+						"value": "2019"
+					},
+					{
+						"key": "Kantine",
+						"value": "123"
+					},
+					{
+						"key": "Netto",
+						"value": "123"
+					},
+					{
+						"key": "Brutto",
+						"value": "123"
+					},
+					{
+						"key": "AKP",
+						"value": "0"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://jhnas.local:3000/sql/gehalt",
+					"protocol": "http",
+					"host": [
+						"jhnas",
+						"local"
+					],
+					"port": "3000",
+					"path": [
+						"sql",
+						"gehalt"
+					]
+				},
+				"description": "Create new Month entry in Table Gehalt"
+			},
+			"response": []
+		}
+	]
+}
