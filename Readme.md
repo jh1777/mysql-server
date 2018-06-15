@@ -36,4 +36,5 @@ Comment displays correct command to be executed.
 ## Try with another tutorial and postgres
 [Getting Started with Node, Express and Postgres Using Sequelize](https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize)
 
-
+## Sehr gut! Mit swagger
+https://blog.cloudboost.io/adding-swagger-to-existing-node-js-project-92a6624b855b
