@@ -173,7 +173,75 @@
 							"value": "2018"
 						}
 					]
-				}
+				},
+				"description": "Summe und Avg. aller Zahlungen des Jahres"
+			},
+			"response": []
+		},
+		{
+			"name": "Gehalt Monat 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"test\": \"1\" }"
+				},
+				"url": {
+					"raw": "http://{{host}}:4000/sql/gehalt?monat=2",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4000",
+					"path": [
+						"sql",
+						"gehalt"
+					],
+					"query": [
+						{
+							"key": "monat",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Avg Brutto/Netto aller Zahlungen"
+			},
+			"response": []
+		},
+		{
+			"name": "Kantinenkosten aller Jahre",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"test\": \"1\" }"
+				},
+				"url": {
+					"raw": "http://{{host}}:4000/sql/gehalt/Kantine",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4000",
+					"path": [
+						"sql",
+						"gehalt",
+						"Kantine"
+					]
+				},
+				"description": "Summe aller Zahlungen dieser Art aller Jahre"
 			},
 			"response": []
 		}
