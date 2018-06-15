@@ -24,7 +24,7 @@ exports.gehaltMonatJahr = function(req, res) {
 			});
 		} 
 		if (jahr == null && monat != null) {
-			connection.query(`SELECT Monat, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg FROM Gehalt where Mont = ${monat}`, (err,rows) => {
+			connection.query(`SELECT Monat, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg FROM Gehalt where Monat = ${monat}`, (err,rows) => {
 				if(err) throw err;
 
 				if (rows.length > 0) {
