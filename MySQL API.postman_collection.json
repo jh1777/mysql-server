@@ -80,13 +80,12 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "http://jhnas.local:3000/sql/gehalt",
+					"raw": "http://{{host}}:4000/sql/gehalt",
 					"protocol": "http",
 					"host": [
-						"jhnas",
-						"local"
+						"{{host}}"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"sql",
 						"gehalt"
@@ -103,23 +102,23 @@
 				"header": [
 					{
 						"key": "Monat",
-						"value": "3"
+						"value": "5"
 					},
 					{
 						"key": "Jahr",
-						"value": "2019"
+						"value": "2018"
 					},
 					{
 						"key": "Kantine",
-						"value": "123"
+						"value": "110.65"
 					},
 					{
 						"key": "Netto",
-						"value": "123"
+						"value": "5407"
 					},
 					{
 						"key": "Brutto",
-						"value": "123"
+						"value": "9731.41"
 					},
 					{
 						"key": "AKP",
@@ -128,19 +127,53 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "http://jhnas.local:3000/sql/gehalt",
+					"raw": "http://{{host}}:4000/sql/gehalt",
 					"protocol": "http",
 					"host": [
-						"jhnas",
-						"local"
+						"{{host}}"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"sql",
 						"gehalt"
 					]
 				},
 				"description": "Create new Month entry in Table Gehalt"
+			},
+			"response": []
+		},
+		{
+			"name": "Gehalt 2018",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"test\": \"1\" }"
+				},
+				"url": {
+					"raw": "http://{{host}}:4000/sql/gehalt?jahr=2018",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4000",
+					"path": [
+						"sql",
+						"gehalt"
+					],
+					"query": [
+						{
+							"key": "jahr",
+							"value": "2018"
+						}
+					]
+				}
 			},
 			"response": []
 		}
