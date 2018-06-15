@@ -14,7 +14,7 @@ exports.gehaltMonatJahr = function(req, res) {
 		var jahr = req.query.jahr;
 		var monat = req.query.monat;
 		if (monat == null && jahr != null) {
-			connection.query(`SELECT Jahr, sum(Brutto) as Brutto_Summe, sum(Netto) as Netto_Summe, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg FROM Gehalt where Jahr = ${jahr}`, (err,rows) => {
+			connection.query(`SELECT Jahr, sum(Brutto) as Brutto_Summe, sum(Netto) as Netto_Summe, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg, round(sum(Kantine), 2) as Kantine, round(sum(AKP),2) as AKP FROM Gehalt where Jahr = ${jahr}`, (err,rows) => {
 				if(err) throw err;
 
 				//console.log(rows);
