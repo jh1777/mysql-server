@@ -1,4 +1,8 @@
 'use strict';
+Array.prototype.contains = function(element){
+    return this.indexOf(element) > -1;
+};
+
 // https://www.sitepoint.com/using-node-mysql-javascript-client/
 exports.sql_test = function(req, res) {
   connection.query('SELECT * FROM Gehalt', (err,rows) => {
