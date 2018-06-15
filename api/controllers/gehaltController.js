@@ -34,7 +34,7 @@ exports.gehaltMonatJahr = function(req, res) {
 		}
 		if (monat == null && jahr != null) {
 			connection.query(`SELECT Jahr, sum(Brutto) as Brutto_Summe, sum(Netto) as Netto_Summe, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg, round(sum(Kantine), 2) as Kantine, round(sum(AKP),2) as AKP FROM Gehalt where Jahr = ${jahr}`, (err,rows) => {
-				if(err) throw err;
+				if(err) { res.status(404).send('Sorry, we cannot find Jahr: '+jahr); }//throw err;
 
 				//console.log(rows);
 				if (rows.length > 0) {
