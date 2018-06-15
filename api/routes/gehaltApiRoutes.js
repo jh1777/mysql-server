@@ -5,7 +5,7 @@ module.exports = function(app) {
   app.route('/sql')
     .get(api.sql_test);
 
-  app.route('/sql/gehalt')
+  app.route('/sql/gehalt/:art')
   	.get(api.gehaltMonatJahr);
 
   app.route('/sql/gehalt')
