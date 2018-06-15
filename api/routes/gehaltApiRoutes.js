@@ -9,8 +9,7 @@ module.exports = function(app) {
   	.get(api.gehaltMonatJahr);
 
   app.route('/sql/gehalt')
-    .post(api.insertGehalt);
-  
-  app.route('/sql/gehalt')
-    .delete(api.deleteGehalt);
+    .get(api.gehaltMonatJahr)
+    .post(api.insertGehalt)
+    .delete(api.deleteGehalt); 
 };
