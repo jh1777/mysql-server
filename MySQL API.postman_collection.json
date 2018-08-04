@@ -20,14 +20,14 @@
 					"raw": "{ \"test\": \"1\" }"
 				},
 				"url": {
-					"raw": "http://openhabianpi:4000/sql/gehalt?jahr=2018&monat=2",
+					"raw": "http://{{host}}:4000/api/gehalt?jahr=2018&monat=5",
 					"protocol": "http",
 					"host": [
-						"openhabianpi"
+						"{{host}}"
 					],
 					"port": "4000",
 					"path": [
-						"sql",
+						"api",
 						"gehalt"
 					],
 					"query": [
@@ -37,7 +37,7 @@
 						},
 						{
 							"key": "monat",
-							"value": "2"
+							"value": "5"
 						}
 					]
 				}
@@ -76,18 +76,25 @@
 						"key": "AKP",
 						"value": "0",
 						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Monat\": 11,\n    \"Jahr\": 2018\n}"
+				},
 				"url": {
-					"raw": "http://{{host}}:4000/sql/gehalt",
+					"raw": "http://{{host}}:4000/api/gehalt",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "4000",
 					"path": [
-						"sql",
+						"api",
 						"gehalt"
 					]
 				},
@@ -101,40 +108,23 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "Monat",
-						"value": "5"
-					},
-					{
-						"key": "Jahr",
-						"value": "2018"
-					},
-					{
-						"key": "Kantine",
-						"value": "110.65"
-					},
-					{
-						"key": "Netto",
-						"value": "5407"
-					},
-					{
-						"key": "Brutto",
-						"value": "9731.41"
-					},
-					{
-						"key": "AKP",
-						"value": "0"
+						"key": "Content-Type",
+						"value": "application/json"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Monat\": 11,\n    \"Jahr\": 2018,\n    \"Brutto\": 100.10,\n    \"Netto\": 100.20,\n    \"Kantine\": 10.30,\n    \"AKP\": 0.0\n}"
+				},
 				"url": {
-					"raw": "http://{{host}}:4000/sql/gehalt",
+					"raw": "http://{{host}}:4000/api/gehalt",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "4000",
 					"path": [
-						"sql",
+						"api",
 						"gehalt"
 					]
 				},
@@ -193,14 +183,14 @@
 					"raw": "{ \"test\": \"1\" }"
 				},
 				"url": {
-					"raw": "http://{{host}}:4000/sql/gehalt?monat=2",
+					"raw": "http://{{host}}:4000/api/gehalt?monat=2",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "4000",
 					"path": [
-						"sql",
+						"api",
 						"gehalt"
 					],
 					"query": [
@@ -229,19 +219,56 @@
 					"raw": "{ \"test\": \"1\" }"
 				},
 				"url": {
-					"raw": "http://{{host}}:4000/sql/gehalt/Kantine",
+					"raw": "http://{{host}}:4000/api/gehalt/Kantine",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "4000",
 					"path": [
-						"sql",
+						"api",
 						"gehalt",
 						"Kantine"
 					]
 				},
 				"description": "Summe aller Zahlungen dieser Art aller Jahre"
+			},
+			"response": []
+		},
+		{
+			"name": "Netto eines Jahres aller Monate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"test\": \"1\" }"
+				},
+				"url": {
+					"raw": "http://{{host}}:4000/api/gehalt/Netto?jahr=2018",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"gehalt",
+						"Netto"
+					],
+					"query": [
+						{
+							"key": "jahr",
+							"value": "2018"
+						}
+					]
+				},
+				"description": "Summe aller Zahlungen dieser Art eines Jahres fuer alle Monate"
 			},
 			"response": []
 		}

@@ -22,8 +22,12 @@ exports.gehaltMonatJahr = function(req, res) {
 
 		if (param != null) {
 			if (["AKP","Kantine","Brutto","Netto"].contains(param)) {
-			connection.query(`SELECT Jahr, sum(${param}) as Summe FROM Gehalt group by Jahr`, (err,rows) => {
-				if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
+			var queryString = `SELECT Jahr, sum(${param}) as Summe FROM Gehalt group by Jahr`;
+			if (jahr!= null) {
+				queryString = `SELECT Jahr, Monat, ${param} FROM Gehalt WHERE Jahr = ${jahr}`;
+			}
+			connection.query(queryString, (err,rows) => {
+				if(err) { res.status(400).send('Sorry, we cannot find that', JSON.stringify(err)); }//throw err;
 
 				//console.log(rows);
 				if (rows.length > 0) {
@@ -62,30 +66,27 @@ exports.gehaltMonatJahr = function(req, res) {
 		}
 };
 
-
-exports.insertGehalt = function (req, res) {
-	var jahr = req.get('Jahr');
-	var monat = req.get('Monat');
-	var brutto = req.get('Brutto');
-	var netto = req.get('Netto');
-	var akp = req.get('AKP');
-	var kantine = req.get('Kantine');
-	const gehaltRow = { Monat: monat, Jahr: jahr, Brutto: brutto, Netto: netto, AKP: akp, Kantine: kantine };
-	console.log(gehaltRow);
-	connection.query('INSERT INTO Gehalt SET ?', gehaltRow, (err, result) => {	
-		if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
+exports.insertGehalt2 = function (req, res) {
+	// maybe check for json params
+	connection.query('INSERT INTO Gehalt SET ?', req.body, (err, result) => {	
+		if(err) { res.status(404).send('There was a problem', JSON.stringify(err)); }//throw err;
 	  console.log('Last insert ID:', result.insertId);
-		res.json(gehaltRow);
+	  	res.status(201).send(result);
 	});
 };
 
+exports.listGehalt = function (req, res) {
+	//var j = req.body.jahr;
+	//const result =  { Jahr: j };
+	res.json(req.body);
+};
+
 exports.deleteGehalt = function (req, res) {
-	var jahr = req.get('Jahr');
-	var monat = req.get('Monat');
-	const gehaltRow = { Monat: monat, Jahr: jahr };
+	var jahr = req.body.Jahr;
+	var monat = req.body.Monat;
 
 	connection.query('DELETE FROM Gehalt Where Monat = ? and Jahr = ?', [monat, jahr], (err, result) => {	
-		if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
-		res.json(gehaltRow);
+		if(err) { res.status(400).send('Sorry, deletion not possible', JSON.stringify(err)); }//throw err;
+		res.status(200).send(result);
 	});
 };
