@@ -22,7 +22,7 @@ In project directory:
 
 ## Usage
 Example to get Monat 1 form Jahr 2018 (on docker centos1):
-`http://jhnas.local:4000/sql/gehalt?jahr=2018&monat=1`
+`http://jhnas.local:4000/api/gehalt?jahr=2018&monat=1`
 
 
 ## Pi3

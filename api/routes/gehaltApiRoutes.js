@@ -2,13 +2,13 @@
 module.exports = function(app) {
   var api = require('../controllers/gehaltController');
 
-  app.route('/sql')
+  app.route('/api')
     .get(api.sql_test);
 
-  app.route('/sql/gehalt/:art')
+  app.route('/api/gehalt/:art')
   	.get(api.gehaltMonatJahr);
 
-  app.route('/sql/gehalt')
+  app.route('/api/gehalt')
     .get(api.gehaltMonatJahr)
     .post(api.insertGehalt)
     .delete(api.deleteGehalt); 

@@ -10,7 +10,7 @@
     }
   },
   "host": "localhost:4000",
-  "basePath": "/sql",
+  "basePath": "/api",
   "tags": [
     {
       "name": "gehalt",
