@@ -6,6 +6,7 @@
 	},
 	"item": [
 		{
+			"_postman_id": "5ba2bda7-6dc7-4433-b5d1-a8ab702f49b0",
 			"name": "Gehalt 2018 Monat 2",
 			"request": {
 				"method": "GET",
@@ -45,38 +46,11 @@
 			"response": []
 		},
 		{
+			"_postman_id": "8124290b-3f54-494a-861a-3d8481616fca",
 			"name": "Delete Entry",
 			"request": {
 				"method": "DELETE",
 				"header": [
-					{
-						"key": "Monat",
-						"value": "5"
-					},
-					{
-						"key": "Jahr",
-						"value": "2018"
-					},
-					{
-						"key": "Kantine",
-						"value": "123",
-						"disabled": true
-					},
-					{
-						"key": "Netto",
-						"value": "123",
-						"disabled": true
-					},
-					{
-						"key": "Brutto",
-						"value": "123",
-						"disabled": true
-					},
-					{
-						"key": "AKP",
-						"value": "0",
-						"disabled": true
-					},
 					{
 						"key": "Content-Type",
 						"value": "application/json"
@@ -84,7 +58,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"Monat\": 11,\n    \"Jahr\": 2018\n}"
+					"raw": "{\n    \"Monat\": 12,\n    \"Jahr\": 2018\n}"
 				},
 				"url": {
 					"raw": "http://{{host}}:4000/api/gehalt",
@@ -103,6 +77,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "fcb53783-67c9-41c5-a5ed-6a0cc54d2728",
 			"name": "Insert Entry",
 			"request": {
 				"method": "POST",
@@ -133,6 +108,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "2189bb3b-7023-4966-a1c9-7a2e9cfcd8b6",
 			"name": "Gehalt 2018",
 			"request": {
 				"method": "GET",
@@ -169,6 +145,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "adc02ce8-c7c1-4196-9a7c-75cec1e4e1b2",
 			"name": "Gehalt Monat 2",
 			"request": {
 				"method": "GET",
@@ -205,6 +182,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "19dd943a-8457-4b5e-a283-12b726bdded1",
 			"name": "Kantinenkosten aller Jahre",
 			"request": {
 				"method": "GET",
@@ -236,6 +214,7 @@
 			"response": []
 		},
 		{
+			"_postman_id": "7a50e328-2b18-4536-957c-3ba0c75d56ab",
 			"name": "Netto eines Jahres aller Monate",
 			"request": {
 				"method": "GET",

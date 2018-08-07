@@ -1,4 +1,6 @@
 'use strict';
+var utils = require('../../util/stringHelper');
+
 Array.prototype.contains = function(element){
     return this.indexOf(element) > -1;
 };
@@ -76,9 +78,33 @@ exports.insertGehalt2 = function (req, res) {
 };
 
 exports.listGehalt = function (req, res) {
-	//var j = req.body.jahr;
+	var jahr = req.body.Jahr;
+	var data = req.body.Data;
 	//const result =  { Jahr: j };
-	res.json(req.body);
+
+	var queryString = `SELECT Jahr, Monat, ? FROM Gehalt WHERE Jahr = ?`;  //TEST
+	connection.query(queryString, [data, jahr], (err,rows) => {
+		if(err) { res.status(400).send('Sorry, we cannot find that', JSON.stringify(err)); }//throw err;
+
+		//console.log(rows);
+		if (rows.length > 0) {
+			var json = { List: [ ] };
+			rows.forEach(row => {
+				var t = `${row.Jahr}/${utils.appendZero(row.Monat)}`;
+				var s = '{ "Monat": '+t+', "Value": '+row[data]+', "Data": '+data+' }';
+				//json['List'].push({ Monat: t, Value: row.data, Data: data});
+				json['List'].push(JSON.parse(s));
+			});
+
+
+			//const titel = `${rows[0].Jahr}/${utils.appendZero(rows[0].Monat)}`;
+			//const titel2 = `${rows[1].Jahr}/${utils.appendZero(rows[1].Monat)}`;
+			//var json =  { Netto: [ { titel: rows[0].Netto } ]};
+			//json['Netto'].push({titel2: rows[1].Netto});
+			res.json(json);	
+		}
+	});
+	//res.json(req.body);
 };
 
 exports.deleteGehalt = function (req, res) {
