@@ -8,7 +8,7 @@ Array.prototype.contains = function(element){
 // https://www.sitepoint.com/using-node-mysql-javascript-client/
 exports.sql_test = function(req, res) {
   connection.query('SELECT * FROM Gehalt', (err,rows) => {
-	if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
+	if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
 	  //console.log(rows);
 	  res.json({ message: "SELECT statement working - retreived "+ rows.length +" rows"});
 	});
@@ -17,30 +17,32 @@ exports.sql_test = function(req, res) {
 
 exports.gehaltMonatJahr = function(req, res) {
   // Get Jahr and Monat from URL parameters
-		var param = req.params.art;
+	var param = req.params.art;
+	console.log('gehaltMonatJahr entered...');
+	var jahr = req.query.jahr;
+	var monat = req.query.monat;
 
-		var jahr = req.query.jahr;
-		var monat = req.query.monat;
-
-		if (param != null) {
-			if (["AKP","Kantine","Brutto","Netto"].contains(param)) {
+	if (param != null) {
+		if (["AKP","Kantine","Brutto","Netto"].contains(param)) {
 			var queryString = `SELECT Jahr, sum(${param}) as Summe FROM Gehalt group by Jahr`;
 			if (jahr!= null) {
 				queryString = `SELECT Jahr, Monat, ${param} FROM Gehalt WHERE Jahr = ${jahr}`;
 			}
 			connection.query(queryString, (err,rows) => {
-				if(err) { res.status(400).send('Sorry, we cannot find that', JSON.stringify(err)); }//throw err;
+				if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
 
-				//console.log(rows);
+				
 				if (rows.length > 0) {
 					res.json(rows); 
 				}
 			});
-			} else { res.status(404).send('Sorry, we cannot find that!'); }
+		} else { 
+			res.status(404).send('Sorry, only AKP, Kantine, Brutto and Netto are valid');
 		}
+	} else {
 		if (monat == null && jahr != null) {
 			connection.query(`SELECT Jahr, sum(Brutto) as Brutto_Summe, sum(Netto) as Netto_Summe, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg, round(sum(Kantine), 2) as Kantine, round(sum(AKP),2) as AKP FROM Gehalt where Jahr = ${jahr}`, (err,rows) => {
-				if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
+				if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
 
 				//console.log(rows);
 				if (rows.length > 0) {
@@ -50,7 +52,7 @@ exports.gehaltMonatJahr = function(req, res) {
 		} 
 		if (jahr == null && monat != null) {
 			connection.query(`SELECT Monat, round(avg(Brutto),2) as Brutto_Avg, round(avg(Netto),2) as Netto_Avg FROM Gehalt where Monat = ${monat}`, (err,rows) => {
-				if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
+				if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
 
 				if (rows.length > 0) {
 					res.json(rows[0]); 
@@ -59,13 +61,14 @@ exports.gehaltMonatJahr = function(req, res) {
 		}
 		if (monat != null && jahr != null) {
 			connection.query(`SELECT * FROM Gehalt where Monat = ${monat} and Jahr = ${jahr}`, (err,rows) => {
-				if(err) { res.status(404).send('Sorry, we cannot find that'); }//throw err;
+				if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
 
 				if (rows.length > 0) {
 					res.json(rows[0]); 
 				}
 			});
 		}
+	}
 };
 
 exports.insertGehalt2 = function (req, res) {
@@ -82,29 +85,24 @@ exports.listGehalt = function (req, res) {
 	var data = req.body.Data;
 	//const result =  { Jahr: j };
 
-	var queryString = `SELECT Jahr, Monat, ? FROM Gehalt WHERE Jahr = ?`;  //TEST
-	connection.query(queryString, [data, jahr], (err,rows) => {
-		if(err) { res.status(400).send('Sorry, we cannot find that', JSON.stringify(err)); }//throw err;
-
-		//console.log(rows);
+	connection.query('SELECT * FROM Gehalt WHERE Jahr = ?', [jahr], (err,rows) => {
+		if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
+		
+		// console.log(rows);
 		if (rows.length > 0) {
-			var json = { List: [ ] };
-			rows.forEach(row => {
-				var t = `${row.Jahr}/${utils.appendZero(row.Monat)}`;
-				var s = '{ "Monat": '+t+', "Value": '+row[data]+', "Data": '+data+' }';
-				//json['List'].push({ Monat: t, Value: row.data, Data: data});
-				json['List'].push(JSON.parse(s));
-			});
-
-
-			//const titel = `${rows[0].Jahr}/${utils.appendZero(rows[0].Monat)}`;
-			//const titel2 = `${rows[1].Jahr}/${utils.appendZero(rows[1].Monat)}`;
-			//var json =  { Netto: [ { titel: rows[0].Netto } ]};
-			//json['Netto'].push({titel2: rows[1].Netto});
-			res.json(json);	
+			if(rows[0].hasOwnProperty(data)) {
+				var json = { List: [ ] };
+				rows.forEach(row => {
+					var t = `${row.Jahr}/${utils.appendZero(row.Monat)}`;
+					var entry = `{ "Monat": "${t}", "Value": ${row[data]}, "Data": "${data}" }`;
+					json['List'].push(JSON.parse(entry));
+				});
+				res.json(json);	
+			} else {
+				res.status(400).send(`Column not found in data: ${data}`); 
+			}
 		}
 	});
-	//res.json(req.body);
 };
 
 exports.deleteGehalt = function (req, res) {
@@ -112,7 +110,7 @@ exports.deleteGehalt = function (req, res) {
 	var monat = req.body.Monat;
 
 	connection.query('DELETE FROM Gehalt Where Monat = ? and Jahr = ?', [monat, jahr], (err, result) => {	
-		if(err) { res.status(400).send('Sorry, deletion not possible', JSON.stringify(err)); }//throw err;
+		if(err) { res.status(500).send(`Deletion failed: ${JSON.stringify(err)}`); }
 		res.status(200).send(result);
 	});
 };

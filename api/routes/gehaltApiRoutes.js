@@ -6,7 +6,7 @@ module.exports = function(app) {
     .get(api.sql_test);
 
 
-  app.route('/api/list')
+  app.route('/api/gehalt/list')
     .post(api.listGehalt);
 
   app.route('/api/gehalt/:art')
