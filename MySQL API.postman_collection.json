@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"_postman_id": "5ba2bda7-6dc7-4433-b5d1-a8ab702f49b0",
+			"_postman_id": "653174d3-2a10-444c-9716-00ef8a15f207",
 			"name": "Gehalt 2018 Monat 2",
 			"request": {
 				"method": "GET",
@@ -46,7 +46,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8124290b-3f54-494a-861a-3d8481616fca",
+			"_postman_id": "8a375774-cb65-4f7d-bca4-4edde04a71ec",
 			"name": "Delete Entry",
 			"request": {
 				"method": "DELETE",
@@ -77,7 +77,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "fcb53783-67c9-41c5-a5ed-6a0cc54d2728",
+			"_postman_id": "ac7608db-74e9-4239-a23f-0d969a0bf2f8",
 			"name": "Insert Entry",
 			"request": {
 				"method": "POST",
@@ -108,7 +108,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "2189bb3b-7023-4966-a1c9-7a2e9cfcd8b6",
+			"_postman_id": "462ad8e0-d5da-464b-9193-fec297535be7",
 			"name": "Gehalt 2018",
 			"request": {
 				"method": "GET",
@@ -145,7 +145,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "adc02ce8-c7c1-4196-9a7c-75cec1e4e1b2",
+			"_postman_id": "e0fd6e78-9f23-49d3-9656-6fc5014d8fd7",
 			"name": "Gehalt Monat 2",
 			"request": {
 				"method": "GET",
@@ -182,7 +182,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "19dd943a-8457-4b5e-a283-12b726bdded1",
+			"_postman_id": "006f57c4-c054-41da-b050-d9166b1729b1",
 			"name": "Kantinenkosten aller Jahre",
 			"request": {
 				"method": "GET",
@@ -214,7 +214,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "7a50e328-2b18-4536-957c-3ba0c75d56ab",
+			"_postman_id": "8d736590-ca53-4d57-babd-a6afa9f80ff2",
 			"name": "Netto eines Jahres aller Monate",
 			"request": {
 				"method": "GET",
@@ -248,6 +248,38 @@
 					]
 				},
 				"description": "Summe aller Zahlungen dieser Art eines Jahres fuer alle Monate"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "affe1123-01ce-4086-ae08-15c28693ad66",
+			"name": "List Brutto data of a year",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Data\": \"Brutto\",\n\t\"Jahr\": 2018\n}"
+				},
+				"url": {
+					"raw": "http://{{host}}:4000/api/gehalt/list",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"gehalt",
+						"list"
+					]
+				},
+				"description": "List a Column for a specific Jahr. Both must be in request Body."
 			},
 			"response": []
 		}
