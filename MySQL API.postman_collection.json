@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"_postman_id": "653174d3-2a10-444c-9716-00ef8a15f207",
+			"_postman_id": "2bc9a5aa-8606-4b50-ad17-fdd72a330992",
 			"name": "Gehalt 2018 Monat 2",
 			"request": {
 				"method": "GET",
@@ -46,7 +46,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8a375774-cb65-4f7d-bca4-4edde04a71ec",
+			"_postman_id": "2e89128d-8001-44d3-857c-84acddff2d55",
 			"name": "Delete Entry",
 			"request": {
 				"method": "DELETE",
@@ -58,10 +58,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"Monat\": 12,\n    \"Jahr\": 2018\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{host}}:4000/api/gehalt",
+					"raw": "http://{{host}}:4000/api/gehalt/2018/12",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -69,7 +69,9 @@
 					"port": "4000",
 					"path": [
 						"api",
-						"gehalt"
+						"gehalt",
+						"2018",
+						"12"
 					]
 				},
 				"description": "by Jahr und Monat"
@@ -77,7 +79,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "ac7608db-74e9-4239-a23f-0d969a0bf2f8",
+			"_postman_id": "bd4d71a1-f48a-4a1f-9137-084bfab9db38",
 			"name": "Insert Entry",
 			"request": {
 				"method": "POST",
@@ -89,7 +91,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"Monat\": 11,\n    \"Jahr\": 2018,\n    \"Brutto\": 100.10,\n    \"Netto\": 100.20,\n    \"Kantine\": 10.30,\n    \"AKP\": 0.0\n}"
+					"raw": "{\n    \"Monat\": 8,\n    \"Jahr\": 2018,\n    \"Brutto\": 6042.16,\n    \"Netto\": 3456.00,\n    \"Kantine\": 14.0,\n    \"AKP\": 0.0\n}"
 				},
 				"url": {
 					"raw": "http://{{host}}:4000/api/gehalt",
@@ -108,7 +110,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "462ad8e0-d5da-464b-9193-fec297535be7",
+			"_postman_id": "9d9b4e24-b34a-47b3-903e-9d9b605494ae",
 			"name": "Gehalt 2018",
 			"request": {
 				"method": "GET",
@@ -123,14 +125,14 @@
 					"raw": "{ \"test\": \"1\" }"
 				},
 				"url": {
-					"raw": "http://{{host}}:4000/sql/gehalt?jahr=2018",
+					"raw": "http://{{host}}:4000/api/gehalt?jahr=2018",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "4000",
 					"path": [
-						"sql",
+						"api",
 						"gehalt"
 					],
 					"query": [
@@ -145,7 +147,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "e0fd6e78-9f23-49d3-9656-6fc5014d8fd7",
+			"_postman_id": "3a4fe160-937a-47eb-84cc-b6372274a440",
 			"name": "Gehalt Monat 2",
 			"request": {
 				"method": "GET",
@@ -182,7 +184,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "006f57c4-c054-41da-b050-d9166b1729b1",
+			"_postman_id": "ae923d57-7469-4caf-81c4-2ff6160d3c82",
 			"name": "Kantinenkosten aller Jahre",
 			"request": {
 				"method": "GET",
@@ -214,7 +216,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "8d736590-ca53-4d57-babd-a6afa9f80ff2",
+			"_postman_id": "65e640f4-72aa-492e-8bbc-7f58dcbc3e4d",
 			"name": "Netto eines Jahres aller Monate",
 			"request": {
 				"method": "GET",
@@ -252,10 +254,10 @@
 			"response": []
 		},
 		{
-			"_postman_id": "affe1123-01ce-4086-ae08-15c28693ad66",
+			"_postman_id": "542bc908-422e-44a0-b37d-b3a7e40dfccb",
 			"name": "List Brutto data of a year",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -264,10 +266,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"Data\": \"Brutto\",\n\t\"Jahr\": 2018\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{host}}:4000/api/gehalt/list",
+					"raw": "http://{{host}}:4000/api/gehalt/list/Brutto/2018",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -276,7 +278,9 @@
 					"path": [
 						"api",
 						"gehalt",
-						"list"
+						"list",
+						"Brutto",
+						"2018"
 					]
 				},
 				"description": "List a Column for a specific Jahr. Both must be in request Body."

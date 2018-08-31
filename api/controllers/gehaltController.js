@@ -68,6 +68,15 @@ exports.gehaltMonatJahr = function(req, res) {
 				}
 			});
 		}
+		if (monat == null && jahr == null) {
+			connection.query(`SELECT * FROM Gehalt`, (err,rows) => {
+				if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
+				res.json(rows);
+				//if (rows.length > 0) {
+				//	res.json(rows[0]); 
+				//}
+			});
+		}
 	}
 };
 
@@ -81,8 +90,8 @@ exports.insertGehalt2 = function (req, res) {
 };
 
 exports.listGehalt = function (req, res) {
-	var jahr = req.body.Jahr;
-	var data = req.body.Data;
+	var jahr = req.params.jahr;
+	var data = req.params.data;
 	//const result =  { Jahr: j };
 
 	connection.query('SELECT * FROM Gehalt WHERE Jahr = ?', [jahr], (err,rows) => {
@@ -106,8 +115,8 @@ exports.listGehalt = function (req, res) {
 };
 
 exports.deleteGehalt = function (req, res) {
-	var jahr = req.body.Jahr;
-	var monat = req.body.Monat;
+	var jahr = req.params.jahr;
+	var monat = req.params.monat;
 
 	connection.query('DELETE FROM Gehalt Where Monat = ? and Jahr = ?', [monat, jahr], (err, result) => {	
 		if(err) { res.status(500).send(`Deletion failed: ${JSON.stringify(err)}`); }
