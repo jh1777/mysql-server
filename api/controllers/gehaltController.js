@@ -7,6 +7,7 @@ Array.prototype.contains = function(element){
 
 // https://www.sitepoint.com/using-node-mysql-javascript-client/
 exports.sql_test = function(req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
   connection.query('SELECT * FROM Gehalt', (err,rows) => {
 	if(err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
 	  //console.log(rows);
@@ -21,6 +22,7 @@ exports.gehaltMonatJahr = function(req, res) {
 	console.log('gehaltMonatJahr entered...');
 	var jahr = req.query.jahr;
 	var monat = req.query.monat;
+	res.setHeader('Access-Control-Allow-Origin', '*');
 
 	if (param != null) {
 		if (["AKP","Kantine","Brutto","Netto"].contains(param)) {
@@ -81,6 +83,7 @@ exports.gehaltMonatJahr = function(req, res) {
 };
 
 exports.insertGehalt2 = function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	// maybe check for json params
 	connection.query('INSERT INTO Gehalt SET ?', req.body, (err, result) => {	
 		if(err) { res.status(404).send('There was a problem', JSON.stringify(err)); }//throw err;
@@ -90,6 +93,7 @@ exports.insertGehalt2 = function (req, res) {
 };
 
 exports.listGehalt = function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	var jahr = req.params.jahr;
 	var data = req.params.data;
 	//const result =  { Jahr: j };
@@ -115,6 +119,7 @@ exports.listGehalt = function (req, res) {
 };
 
 exports.deleteGehalt = function (req, res) {
+	res.setHeader('Access-Control-Allow-Origin', '*')
 	var jahr = req.params.jahr;
 	var monat = req.params.monat;
 

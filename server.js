@@ -1,19 +1,20 @@
 var express = require('express'),
   app = express(),
-  port = process.env.PORT || 4000,
+  cors = require('cors'),
+  port = process.env.PORT || 4100,
   bodyParser = require('body-parser');
 
 
 const mysql = require('mysql');
 global.connection = mysql.createConnection({
-  host: 'openhabianpi',
-  user: 'ohremote',
+  host: 'zbox',
+  user: 'joerg',
   password: 'j740lba',
   database: 'jh'
 });
 connection.connect((err) => {
   if (err) throw err;
-  console.log('Connected to mysql db "jh" on pi3b+!');
+  console.log('Connected to mysql db "jh" on Zotac ZBox!');
 });
 
 /*
@@ -61,11 +62,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+app.options('/api/gehalt', cors());
+
+/* const cors = require('cors')
+app.get('/with-cors', cors(), (req, res, next) => {
+  res.json({ msg: 'WHOAH with CORS it works! 🔝 🎉' })
+})
+ */
 var routes = require('./api/routes/gehaltApiRoutes'); //importing route
 routes(app); //register the route
 
 
 app.listen(port);
+
+
+
+
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found ...'})
