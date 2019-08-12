@@ -120,6 +120,7 @@ exports.listGehalt = function (req, res) {
 
 exports.deleteGehalt = function (req, res) {
 	res.setHeader('Access-Control-Allow-Origin', '*')
+	res.setHeader('Access-Control-Allow-Methods', "GET, PUT, POST, DELETE");
 	var jahr = req.params.jahr;
 	var monat = req.params.monat;
 
