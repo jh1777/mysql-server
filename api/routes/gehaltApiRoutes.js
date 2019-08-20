@@ -1,9 +1,14 @@
 'use strict';
 module.exports = function(app) {
   var api = require('../controllers/gehaltController');
+  var ausgabenApi = require('../controllers/ausgabenController');
 
   app.route('/api')
     .get(api.sql_test);
+
+  app.route('/api/ausgaben')
+    .get(ausgabenApi.getAll)
+    .post(ausgabenApi.createNew);
 
   app.route('/api/gehalt/list/:data/:jahr')
     .get(api.listGehalt);
