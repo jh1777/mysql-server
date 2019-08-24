@@ -2,13 +2,22 @@
 module.exports = function(app) {
   var api = require('../controllers/gehaltController');
   var ausgabenApi = require('../controllers/ausgabenController');
+  var logApi = require('../controllers/logsController');
+
 
   app.route('/api')
     .get(api.sql_test);
 
+  app.route('/api/logs')
+    .get(logApi.getAll)
+    .post(logApi.createNew)
+    
   app.route('/api/ausgaben')
     .get(ausgabenApi.getAll)
     .post(ausgabenApi.createNew);
+  
+  app.route('/api/ausgaben/:id')
+    .delete(ausgabenApi.delete);
 
   app.route('/api/gehalt/list/:data/:jahr')
     .get(api.listGehalt);

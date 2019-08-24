@@ -64,6 +64,8 @@ app.use(require('cors')());
 
 app.options('/api/gehalt', cors());
 app.options('/api/ausgaben', cors());
+app.options('/api/logs', cors());
+
 
 /* const cors = require('cors')
 app.get('/with-cors', cors(), (req, res, next) => {
