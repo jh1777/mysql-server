@@ -6,16 +6,24 @@ Array.prototype.contains = function (element) {
 };
 
 exports.getAll = function (req, res) {
-    connection.query(`SELECT * FROM Logs where date(Timestamp)=CURRENT_DATE`, (err, rows) => {
+    connection.query(`SELECT * FROM Versicherungen`, (err, rows) => {
         if (err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
         res.json(rows);
     });
 };
 
 exports.createNew = function (req, res) {
-    connection.query('INSERT INTO Logs SET ?', req.body, (err, result) => {
+    connection.query('INSERT INTO Versicherungen SET ?', req.body, (err, result) => {
         if (err) { res.status(404).send('There was a problem', JSON.stringify(err)); }
         console.log('Last insert ID:', result.insertId);
         res.status(201).send(result);
     });
+};
+
+exports.delete = function (req, res) {
+	var id = req.params.id;
+	connection.query('DELETE FROM Versicherungen Where id = ?', [id], (err, result) => {	
+		if(err) { res.status(500).send(`Deletion failed: ${JSON.stringify(err)}`); }
+		res.status(200).send(result);
+	});
 };
