@@ -4,6 +4,8 @@ module.exports = function(app) {
   var ausgabenApi = require('../controllers/ausgabenController');
   var logApi = require('../controllers/logsController');
   var versicherungenApi = require('../controllers/versicherungenController');
+  var buchungenApi = require('../controllers/buchungenController');
+  var buchungskategorienApi = require('../controllers/buchungskategorienController');
 
   app.route('/api')
     .get(api.sql_test);
@@ -12,6 +14,22 @@ module.exports = function(app) {
   app.route('/api/logs')
     .get(logApi.getAll)
     .post(logApi.createNew)
+
+  // Buchungen
+  app.route('/api/buchungen')
+    .get(buchungenApi.getAll)
+    .post(buchungenApi.createNew);
+
+  app.route('/api/buchungen/:id')
+    .delete(buchungenApi.delete);
+
+  // Buchungskategorien
+  app.route('/api/buchungen/config')
+    .get(buchungskategorienApi.getAll)
+    .post(buchungskategorienApi.createNew);
+
+  app.route('/api/buchungen/config/:id')
+    .delete(buchungskategorienApi.delete);
 
   // Ausgaben
   app.route('/api/ausgaben')
