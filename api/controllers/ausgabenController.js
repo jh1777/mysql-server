@@ -6,7 +6,7 @@ Array.prototype.contains = function (element) {
 };
 
 exports.getAll = function (req, res) {
-    connection.query(`SELECT * FROM Ausgaben`, (err, rows) => {
+    connection.query(`SELECT * FROM Ausgaben a where a.Ende is null or a.Ende > current_date`, (err, rows) => {
         if (err) { res.status(500).send(`Sorry, we cannot find that: ${JSON.stringify(err)}`); }
         res.json(rows);
     });
