@@ -14,8 +14,7 @@ exports.getAll = function (req, res) {
 
 exports.createNew = function (req, res) {
     connection.query('INSERT INTO Ausgaben SET ?', req.body, (err, result) => {
-        if (err) { res.status(500).send('Error creating new entry: ', JSON.stringify(err)); }
-        console.log('Last insert ID:', result.insertId);
+        if (err) { res.status(500).send(`Error creating new entry: ${JSON.stringify(err)}`); }
         res.status(201).send(result);
     });
 };
