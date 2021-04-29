@@ -35,6 +35,9 @@ module.exports = function(app) {
   app.route('/api/ausgaben')
     .get(ausgabenApi.getAll)
     .post(ausgabenApi.createNew);
+
+  app.route('/api/ausgaben/:id')
+    .put(ausgabenApi.set);
   
   app.route('/api/ausgaben/:id')
     .delete(ausgabenApi.delete);

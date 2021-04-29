@@ -27,3 +27,24 @@ exports.delete = function (req, res) {
 		res.status(200).send(result);
 	});
 };
+
+exports.set = function (req, res) {
+	var id = req.params.id;
+    let statements = [];
+
+    if (req.body.Betrag) statements.push(`Betrag = ${req.body.Betrag}`);
+    if (req.body.Ende) statements.push(`Ende = '${req.body.Ende}'`);
+    if (req.body.Start) statements.push(`Start = '${req.body.Start}'`);
+    if (req.body.Kategorie) statements.push(`Kategorie = '${req.body.Kategorie}'`);
+    if (req.body.Intervall) statements.push(`Intervall = '${req.body.Intervall}'`);
+    if (req.body.Beschreibung) statements.push(`Beschreibung = '${req.body.Beschreibung}'`);
+    if (req.body.Name) statements.push(`Name = '${req.body.Name}'`);
+
+    if (statements.length > 0) {
+
+        connection.query(`UPDATE Ausgaben set ${statements.join(',')} where Ausgaben.id = ${id}`, (err, result) => {
+            if (err) { res.status(500).send(`There was a problem setting ${id}: ${statements.join(',')}, Error ${JSON.stringify(err)}`); }
+            res.status(201).send(result);
+        });
+    }
+};
