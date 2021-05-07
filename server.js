@@ -7,7 +7,7 @@ var express = require('express'),
 
 const mysql = require('mysql');
 global.connection = mysql.createConnection({
-  host: 'zbox',
+  host: '192.168.178.129',
   user: 'joerg',
   password: 'j740lba',
   database: 'jh'
@@ -76,8 +76,8 @@ app.get('/with-cors', cors(), (req, res, next) => {
 var routes = require('./api/routes/gehaltApiRoutes'); //importing route
 routes(app); //register the route
 
-
-app.listen(port);
+const host = '0.0.0.0';
+app.listen(port, host);
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found ...'})
