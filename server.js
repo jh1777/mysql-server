@@ -64,6 +64,7 @@ app.use(require('cors')());
 
 app.options('/api/gehalt', cors());
 app.options('/api/ausgaben', cors());
+app.options('/api/absicherung', cors());
 app.options('/api/logs', cors());
 app.options('/api/versicherungen', cors());
 app.options('/api/buchungen', cors());

@@ -2,6 +2,7 @@
 module.exports = function(app) {
   var api = require('../controllers/gehaltController');
   var ausgabenApi = require('../controllers/ausgabenController');
+  var absicherungApi = require('../controllers/absicherungController');
   var logApi = require('../controllers/logsController');
   var versicherungenApi = require('../controllers/versicherungenController');
   var buchungenApi = require('../controllers/buchungenController');
@@ -41,6 +42,17 @@ module.exports = function(app) {
   
   app.route('/api/ausgaben/:id')
     .delete(ausgabenApi.delete);
+
+  // Absicherung
+  app.route('/api/absicherung')
+    .get(absicherungApi.getAll)
+    .post(absicherungApi.createNew);
+
+  app.route('/api/absicherung/:id')
+    .put(absicherungApi.set);
+
+  app.route('/api/absicherung/:id')
+    .delete(absicherungApi.delete);
 
   // Versicherungen
   app.route('/api/versicherungen')
