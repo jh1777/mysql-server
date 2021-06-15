@@ -40,6 +40,7 @@ exports.set = function (req, res) {
     if (req.body.Einmalzahlung) statements.push(`Einmalzahlung = '${req.body.Einmalzahlung}'`);
     if (req.body.Faelligkeit) statements.push(`Faelligkeit = '${req.body.Faelligkeit}'`);
     if (req.body.Kommentar) statements.push(`Kommentar = '${req.body.Kommentar}'`);
+    if (req.body.Bearbeitet) statements.push(`Bearbeitet = '${req.body.Bearbeitet}'`);
 
     if (statements.length > 0) {
 

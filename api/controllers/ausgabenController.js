@@ -34,6 +34,7 @@ exports.set = function (req, res) {
     if (req.body.Betrag) statements.push(`Betrag = ${req.body.Betrag}`);
     if (req.body.Ende) statements.push(`Ende = '${req.body.Ende}'`);
     if (req.body.Start) statements.push(`Start = '${req.body.Start}'`);
+    if (req.body.Bearbeitet) statements.push(`Bearbeitet = '${req.body.Bearbeitet}'`);
     if (req.body.Kategorie) statements.push(`Kategorie = '${req.body.Kategorie}'`);
     if (req.body.Intervall) statements.push(`Intervall = '${req.body.Intervall}'`);
     if (req.body.Beschreibung) statements.push(`Beschreibung = '${req.body.Beschreibung}'`);
