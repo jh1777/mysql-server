@@ -41,6 +41,7 @@ exports.set = function (req, res) {
     if (req.body.Faelligkeit) statements.push(`Faelligkeit = '${req.body.Faelligkeit}'`);
     if (req.body.Kommentar) statements.push(`Kommentar = '${req.body.Kommentar}'`);
     if (req.body.Bearbeitet) statements.push(`Bearbeitet = '${req.body.Bearbeitet}'`);
+    if (req.body.Todesfallsumme) statements.push(`Todesfallsumme = '${req.body.Todesfallsumme}'`);
 
     if (statements.length > 0) {
 
