@@ -33,7 +33,6 @@ exports.set = function (req, res) {
 
     if (req.body.Person) statements.push(`Person = ${req.body.Person}`);
     if (req.body.Name) statements.push(`Name = '${req.body.Name}'`);
-    if (req.body.Art) statements.push(`Art = '${req.body.Art}'`);
     if (req.body.Versicherung) statements.push(`Versicherung = '${req.body.Versicherung}'`);
     if (req.body.Versicherungsnummer) statements.push(`Versicherungsnummer = '${req.body.Versicherungsnummer}'`);
     if (req.body.Monatsbetrag) statements.push(`Monatsbetrag = '${req.body.Monatsbetrag}'`);
@@ -42,6 +41,7 @@ exports.set = function (req, res) {
     if (req.body.Kommentar) statements.push(`Kommentar = '${req.body.Kommentar}'`);
     if (req.body.Bearbeitet) statements.push(`Bearbeitet = '${req.body.Bearbeitet}'`);
     if (req.body.Todesfallsumme) statements.push(`Todesfallsumme = '${req.body.Todesfallsumme}'`);
+    if (req.body.Berufsunfaehigkeit) statements.push(`Berufsunfaehigkeit = '${req.body.Berufsunfaehigkeit}'`);
 
     if (statements.length > 0) {
 
